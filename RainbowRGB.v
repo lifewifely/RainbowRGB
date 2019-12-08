@@ -1,37 +1,15 @@
 module RainbowRGB
 (input CLK
-,output[2:0]LED
+,output[7:0]LED
 );
 
-wire UP;
-wire DW;
-wire STT0;
-wire STT1;
-PWM up(CLK,1,STT0,UP);
-PWM dw(CLK,0,STT1,DW);
-
-reg[1:0]flag0=2'b00;
-always@(posedge STT0)
-	if(flag0==2'b10)
-		flag0<=1'b0;
-	else
-		flag0<=flag0+1'b1;
-assign LED[0]=(flag0==2'b00)?UP:((flag0==2'b01)?DW:1'b1);
-
-reg[1:0]flag1=2'b01;
-always@(posedge STT0)
-	if(flag1==2'b10)
-		flag1<=1'b0;
-	else
-		flag1<=flag1+1'b1;
-assign LED[1]=(flag1==2'b00)?UP:((flag1==2'b01)?DW:1'b1);
-
-reg[1:0]flag2=2'b10;
-always@(posedge STT0)
-	if(flag2==2'b10)
-		flag2<=1'b0;
-	else
-		flag2<=flag2+1'b1;
-assign LED[2]=(flag2==2'b00)?UP:((flag2==2'b01)?DW:1'b1);
+LED i1(CLK,3'b000,LED[0]);
+LED i2(CLK,3'b001,LED[1]);
+LED i3(CLK,3'b010,LED[2]);
+LED i4(CLK,3'b011,LED[3]);
+LED i5(CLK,3'b100,LED[4]);
+LED i6(CLK,3'b101,LED[5]);
+LED i7(CLK,3'b110,LED[6]);
+LED i8(CLK,3'b111,LED[7]);
 
 endmodule
