@@ -5,10 +5,10 @@ module PWM
 ,output PWM
 );
 
-reg[24:0]cnt1;
-reg[24:0]cnt2;
+reg[12:0]cnt1;
+reg[12:0]cnt2;
 
-parameter[11:0]freq=12'd2400;//通过这个freq来控制PWM的周期
+parameter[12:0]freq=13'd4000;//通过这个freq来控制PWM的周期
 
 reg stt;//监视状态
 always@(posedge CLK)
